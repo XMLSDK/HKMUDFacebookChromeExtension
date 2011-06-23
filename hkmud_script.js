@@ -22,6 +22,7 @@ function replace_names_in_element(id) {
     {
         e = document.getElementById(id);
     }
+    if (!e) return;
     lastText = e.innerHTML;
     var changed = 0;
     for (var key in nameDict)
@@ -55,6 +56,7 @@ function replace_emotes_in_element(id) {
     {
         e = document.getElementById(id);
     }
+    if (!e) return;
     lastText = e.innerHTML;
     var changed = 0;
     for (var key in emote_dict)
@@ -83,8 +85,11 @@ var timer;
 
 function check() {
     clearTimeout(timer);
-    replace_names_in_element("pagelet_group");
-    replace_emotes_in_element("pagelet_group");
+    if (window.location.href.search("group_5782635681") != -1)
+    {
+        replace_names_in_element("pagelet_group");
+        replace_emotes_in_element("pagelet_group");
+    }
     timer = setTimeout(check, 2000);
 }
 
