@@ -1,0 +1,15 @@
+{
+  "name": "HKMUD Facebook Extension",
+  "version": "1.0",
+  "description": "By Simon Chow",
+  "permissions": ["tabs", "http://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["file:///test.html", "https://www.facebook.com/*", "http://www.facebook.com/*"],
+      "js": ["hkmud_script.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
+}
+
