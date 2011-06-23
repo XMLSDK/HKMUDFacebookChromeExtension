@@ -1,14 +1,13 @@
 {
   "name": "HKMUD Facebook Chrome Extension",
-  "version": "1.1",
+  "version": "1.2",
   "description": "By Simon Chow",
-  "permissions": ["tabs", "http://*/*"],
+  "permissions": ["tabs", "*://www.facebook.com/home.php?sk=group_5782635681*"],
   "content_scripts": [
     {
-      "matches": ["file:///test.html", "https://www.facebook.com/*", "http://www.facebook.com/*"],
-      "js": ["jquery-1.6.1.min.js", "hkmud_script.js"],
-      "run_at": "document_end",
-      "all_frames": true
+      "matches": ["*://www.facebook.com/home.php?sk=group_5782635681*"],
+      "js": ["hkmud_script.js"],
+      "run_at": "document_end"
     }
   ]
 }
