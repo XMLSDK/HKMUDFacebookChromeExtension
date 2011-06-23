@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    
+// Load the Visualization API and the piechart package.
+google.load('visualization', '1');
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.setOnLoadCallback(loadSpreadsheetData);
+
+function loadSpreadsheetData() {
+    var nameDict = {};
+    var URL = 'https://spreadsheets.google.com/spreadsheet/ccc?key=0AkaldqPzwYkxdDlGbWJjc3ZUampRX2RtM2xudWo0MEE&hl=en_US&authkey=CPm3i5gB';
+
+        chrome.extension.onRequest.addListener(
+          function(request, sender, sendResponse) {
+
+    var query = new google.visualization.Query(URL);
+    query.setQuery('select *');
+    query.send(function(resp){
+      if (!resp.isError()) {
+        var dataTable = resp.getDataTable();
+        var jsonData = JSON.parse(dataTable.toJSON());
+        var len = jsonData.rows.length;
+        for (var i=1; i<len; i++) {
+          var row = jsonData.rows[i];
+          var fbName = row.c[0].v;
+          var mudName = row.c[1].v;
+          nameDict[fbName] = mudName;
+        }
+        console.log(nameDict);
+            if (request.message == "getNameDict")
+              sendResponse({"nameDict": nameDict});
+            else
+              sendResponse({}); // snub them.
+          };
+      });
+    });
+}
+    </script>
+  </head>
+
+  <body>
+  </body>
+</html>
+
