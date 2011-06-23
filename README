@@ -1,0 +1,9 @@
+HKMUDFacebookChromeExtension
+============================
+It is a Google Chrome Extension which converts the Facebook usernames into HKMUD player names.
+
+Usage
+=====
+1. Google Chrome > Window > Extensions > Load unpacked extension...
+2. Select folder of this project
+3. Refresh Facebook (group of HKMUD)
