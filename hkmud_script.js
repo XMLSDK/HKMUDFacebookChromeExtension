@@ -30,4 +30,29 @@ function replace_names() {
     }
 }
 
+function replaceIn(id) {
+    for (var key in dict)
+    {
+        var value = dict[key];
+        if (value)
+        {
+            var e = $("#"+id);
+            var oldText = e.html();
+            if (oldText)
+            {
+                var newText = oldText.replace(new RegExp(key, "g"), value);
+                if (newText != oldText)
+                {
+                   e.html(newText);
+                }
+            }
+        }
+    }
+}
+
 replace_names();
+
+var nodeInserted = function(event) {
+    replaceIn(event.target.id);
+};
+$('body').bind("DOMNodeInserted", nodeInserted);
